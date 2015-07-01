@@ -7,7 +7,9 @@ var Zen = {
     },
     show: function () {
         document.getElementById(this.selector).style.visibility = 'visible';
-        location.hash = location.hash.replace(/%26zen$/g, '');
+        if (Zen.isActive) {
+            location.hash = location.hash.replace(/%26zen$/g, '');
+        }
     },
     createButton: function () {
         var anchor = document.createElement('A');
@@ -22,17 +24,22 @@ var Zen = {
             e.preventDefault();
             if (Zen.isActive) {
                 Zen.show();
+                document.getElementById('todoist-zen-toggle').textContent = '-';
             } else {
                 Zen.hide();
+                document.getElementById('todoist-zen-toggle').textContent = '+';
             }
-            document.getElementById('todoist-zen-toggle').textContent = (
-                Zen.isActive ? '-' : '+'
-            );
         });
         document.getElementById('td_logo').appendChild(anchor);
     },
     init: function () {
-        if (this.isActive) { Zen.hide(); }
+        if (this.isActive) {
+            setTimeout(function () {
+                location.hash.replace(/%26zen$/g, '');
+                location.hash += '%26zen';
+            }, 500);
+            Zen.hide();
+        }
         this.createButton();
     }
 };
