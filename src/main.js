@@ -1,29 +1,31 @@
-var Zen = {
+var HS = {
     selector: 'list_holder',
-    get isActive () { return !!location.hash.match(/%26zen$/) },
+    get isActive () { return !!location.hash.match(/%26hidesidebar$/) },
     hide: function () {
         document.getElementById(this.selector).style.visibility = 'hidden';
-        if (!Zen.isActive) { location.hash = location.hash += '%26zen'; }
+        if (!HS.isActive) {
+            location.hash = location.hash += '%26hidesidebar';
+        }
     },
     show: function () {
         document.getElementById(this.selector).style.visibility = 'visible';
-        if (Zen.isActive) {
-            location.hash = location.hash.replace(/%26zen$/g, '');
+        if (HS.isActive) {
+            location.hash = location.hash.replace(/%26hidesidebar$/g, '');
         }
     },
     createButton: function () {
         var anchor = document.createElement('A');
         anchor.setAttribute('href', '#');
-        anchor.setAttribute('id', 'todoist-zen-toggle');
+        anchor.setAttribute('id', 'todoist-hs-toggle');
         anchor.textContent = (this.isActive) ? '+' : '-';
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            if (Zen.isActive) {
-                Zen.show();
-                document.getElementById('todoist-zen-toggle').textContent = '-';
+            if (HS.isActive) {
+                HS.show();
+                document.getElementById('todoist-hs-toggle').textContent = '-';
             } else {
-                Zen.hide();
-                document.getElementById('todoist-zen-toggle').textContent = '+';
+                HS.hide();
+                document.getElementById('todoist-hs-toggle').textContent = '+';
             }
         });
         document.getElementById('td_logo').appendChild(anchor);
@@ -31,12 +33,12 @@ var Zen = {
     init: function () {
         if (this.isActive) {
             setTimeout(function () {
-                location.hash.replace(/%26zen$/g, '');
-                location.hash += '%26zen';
+                location.hash.replace(/%26hidesidebar$/g, '');
+                location.hash += '%26hidesidebar';
             }, 500);
-            Zen.hide();
+            HS.hide();
         }
         this.createButton();
     }
 };
-Zen.init();
+HS.init();

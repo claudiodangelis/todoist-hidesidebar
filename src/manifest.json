@@ -1,10 +1,10 @@
 {
     "author": "Claudio d'Angelis (https://claudiodangelis.com)",
-    "description": "Hide projects sidebar from Todoist",
+    "description": "Hide sidebar from Todoist",
     "name": "Todoist Zen",
     "manifest_version": 2,
     "version": "0.1.0",
-    "homepage_url": "https://github.com/claudiodangelis/todoist-zen",
+    "homepage_url": "https://github.com/claudiodangelis/todoist-hidesidebar",
     "content_scripts": [
         {
             "all_frames": true,
@@ -12,10 +12,10 @@
                 "https://todoist.com/app*"
             ],
             "js": [
-                "zen.js"
+                "main.js"
             ],
             "css": [
-                "zen.css"
+                "main.css"
             ],
             "run_at": "document_end"
         }
