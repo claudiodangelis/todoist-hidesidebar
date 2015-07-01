@@ -14,6 +14,9 @@
             "js": [
                 "zen.js"
             ],
+            "css": [
+                "zen.css"
+            ],
             "run_at": "document_end"
         }
     ]

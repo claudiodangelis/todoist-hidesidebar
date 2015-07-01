@@ -15,10 +15,6 @@ var Zen = {
         var anchor = document.createElement('A');
         anchor.setAttribute('href', '#');
         anchor.setAttribute('id', 'todoist-zen-toggle');
-        anchor.style.position = 'absolute';
-        anchor.style.right = 0;
-        anchor.style.fontSize = 'x-large';
-        anchor.style.textDecoration = "none";
         anchor.textContent = (this.isActive) ? '+' : '-';
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
